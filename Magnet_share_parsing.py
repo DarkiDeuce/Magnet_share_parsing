@@ -18,7 +18,8 @@ work['C1'] = 'Старая цена'
 work['D1'] = 'Новая цена'
 work['E1'] = 'Скидка'
 
-bot = telebot.TeleBot("5224662237:AAHinmeM1NgsnRAqHIS1Vk55PzOgSwS0i_M")
+bot = telebot.TeleBot(" ")
+file_path = ''
 
 strings = 1
 
@@ -107,7 +108,7 @@ def pars(page, strings, name_last_element , name_product = ''):
 
     if name_product == name_last_element:
         print("Конец")
-        file.save('C:\\Users\\User\\Desktop\\All\\Activity\\Python\\Задачи\\Акции.xlsx')
+        file.save(file_path)
     else:
         pars(page+1, strings, name_last_element)
 
@@ -118,8 +119,8 @@ def stock(message):
     name_last_element = last_element()
     pars(1, strings, name_last_element)
 
-    bot.send_document(message.chat.id, open('C:\\Users\\User\\Desktop\\All\\Activity\\Python\\Задачи\\Акции.xlsx', 'rb'))
+    bot.send_document(message.chat.id, open(file_path, 'rb'))
 
-    os.remove('C:\\Users\\User\\Desktop\\All\\Activity\\Python\\Задачи\\Акции.xlsx')
+    os.remove(file_path)
 
 bot.polling(none_stop=True)
